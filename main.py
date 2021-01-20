@@ -49,7 +49,7 @@ com_doc = date_filler(com_doc)
 #       MORE CLEANING UP
 com_doc.drop([1, 5], axis=1, inplace=True)
 com_doc.drop(
-    com_doc[(com_doc[2] == "BOTANY") | (com_doc[4] == '')].index, inplace=True)
+    com_doc[(com_doc[2] == "BOTANY") | (com_doc[4] == '')].index, inplace=True)  # EXCLUDING BIOLOGY CLASSES
 com_doc = com_doc.reset_index(drop=True)
 com_doc = com_doc.T.reset_index(drop=True).T  # RESETING COLUMN INDEX hack
 

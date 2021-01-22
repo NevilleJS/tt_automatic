@@ -5,7 +5,7 @@ import re
 # ------------------------------------------------------------------------>
 
 #       OPENING DOC
-doc = camelot.read_pdf("tt.pdf", pages="all")
+doc = camelot.read_pdf("tt1.pdf", pages="all")
 
 # ------------------------------------------------------------------------>
 
@@ -49,7 +49,7 @@ com_doc = date_filler(com_doc)
 #       MORE CLEANING UP
 com_doc.drop([1, 5], axis=1, inplace=True)
 com_doc.drop(
-    com_doc[(com_doc[2] == "BOTANY") | (com_doc[4] == '')].index, inplace=True)  # EXCLUDING BIOLOGY CLASSES
+    com_doc[(com_doc[2] == "BOTANY") | (com_doc[2] == "ZOOLOGY") | (com_doc[4] == '')].index, inplace=True)  # EXCLUDING BIOLOGY CLASSES
 com_doc = com_doc.reset_index(drop=True)
 com_doc = com_doc.T.reset_index(drop=True).T  # RESETING COLUMN INDEX hack
 
@@ -59,8 +59,22 @@ com_doc = com_doc.T.reset_index(drop=True).T  # RESETING COLUMN INDEX hack
 # re.findall(r'\d+', "")
 
 #   LOOPING THROUGH EACH CELL WHILE EXTRACTING CLASS NUMBER(class num returns a list)
-# for y in range(len(com_doc)):
-#     for x in range(len(com_doc.columns)-1):
-#         com_doc.iloc[y, x]
-#     re.findall(r"\d+", com_doc.iloc[y, len(com_doc.columns)-1])
-# print("\n")
+for y in range(len(com_doc)):
+
+    #   PSYCHO LEVEL SHIT
+    com_doc.at[y, len(com_doc.columns)-1] = list(map(int, re.findall(r"\d+",
+                                                                     com_doc.iloc[y, len(com_doc.columns)-1])))
+
+# ------------------------------------------------------------------------>
+
+
+def lister(var="*"):
+    if type(var) != str:
+        for y in range(len(com_doc)):
+            print(com_doc.iloc[y, var])
+    else:
+        for y in range(len(com_doc)):
+            print(com_doc.iloc[y],
+                  "\n--------------------------------------->")
+
+# ------------------------------------------------------------------------>

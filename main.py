@@ -58,7 +58,7 @@ com_doc = com_doc.T.reset_index(drop=True).T  # RESETING COLUMN INDEX hack
 #   TEMP REGEX
 # re.findall(r'\d+', "")
 
-#   LOOPING THROUGH EACH CELL WHILE EXTRACTING CLASS NUMBER(class num returns a list)
+#   LOOPING THROUGH EACH CELL WHILE EXTRACTING CLASS NUMBER
 for y in range(len(com_doc)):
 
     #   PSYCHO LEVEL SHIT

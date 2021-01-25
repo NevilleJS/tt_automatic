@@ -5,7 +5,9 @@ import re
 # ------------------------------------------------------------------------>
 
 #       OPENING DOC
+print("Processing Document...")
 doc = camelot.read_pdf("tt1.pdf", pages="all")
+
 
 # ------------------------------------------------------------------------>
 
@@ -64,6 +66,9 @@ for y in range(len(com_doc)):
     #   PSYCHO LEVEL SHIT
     com_doc.at[y, len(com_doc.columns)-1] = list(map(int, re.findall(r"\d+",
                                                                      com_doc.iloc[y, len(com_doc.columns)-1])))
+    # CLEANING UP DATES
+    com_doc.at[y, 0] = com_doc.at[y, 0][:10]
+    com_doc.at[y, 2] = re.sub("\n", "", com_doc.at[y, 2])
 
 # ------------------------------------------------------------------------>
 
@@ -77,4 +82,6 @@ def lister(var="*"):
             print(com_doc.iloc[y],
                   "\n--------------------------------------->")
 
+
 # ------------------------------------------------------------------------>
+print("Finished!")

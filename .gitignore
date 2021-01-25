@@ -127,3 +127,4 @@ dmypy.json
 
 # tt_automatic
 *.pdf
+node_modules/

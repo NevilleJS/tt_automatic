@@ -126,5 +126,4 @@ dmypy.json
 
 
 # tt_automatic
-db.py
 *.pdf
